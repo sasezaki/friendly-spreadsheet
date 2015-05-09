@@ -4,10 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Google\SpreadSheets;
 
-$user = [
-    'user' => '',
-    'password' => '',
-];
+$user = require __DIR__ .'/user.php';
 
 $sheetKey = '';
 $worksheetId = '';
