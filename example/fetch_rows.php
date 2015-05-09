@@ -12,8 +12,8 @@ $worksheetId = 'od6';
 $monsters = SpreadSheets::login($user)->getReader()
     ->select(['id'])
     ->from($sheetKey, $worksheetId)
-    ->fetch()
-    ->all();
+    ->exec()
+    ->fetchAll();
 
 var_dump($monsters);
 

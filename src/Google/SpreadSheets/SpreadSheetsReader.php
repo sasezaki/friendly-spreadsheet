@@ -52,9 +52,17 @@ class SpreadSheetsReader
     /**
      * @return array
      */
-    public function all()
+    public function fetchAll()
     {
         return $this->getItems();
+    }
+
+    /**
+     * @return array
+     */
+    public function fetch()
+    {
+        return $this->first();
     }
 
     /**
@@ -185,7 +193,7 @@ class SpreadSheetsReader
     /**
      * @return $this
      */
-    public function fetch()
+    public function exec()
     {
         $items = [];
         $feeds = $this->getListFeed();
