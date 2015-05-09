@@ -22,9 +22,19 @@ $user = [
   'user' => 'mojibakeo@gmail.com',
   'password' => 'password',
 ];
-$rows = Spreadsheets::login($user)->getReader()-from('sheet_key', 'worksheet_id')->all();
 
-var_dump($rows);
+$all = Spreadsheets::login($user)->getReader()
+  ->select(['*'])
+  ->from('sheet_key', 'worksheet_id')
+  ->exec()
+  ->fetchAll();
+
+$specific = Spreadsheets::login($user)->getReader()
+  ->select(['*'])
+  ->from('sheet_key', 'worksheet_id')
+  ->where(['id' => 1])
+  ->exec()
+  ->fetch();
 
 ```
 
@@ -43,7 +53,9 @@ $row = [
   'id' => 100,
   'name' => 'bko',
 ]
-Spreadsheets::login($user)->getWriter()-to('sheet_key', 'worksheet_id')->insert($row);
+Spreadsheets::login($user)->getWriter()
+  ->to('sheet_key', 'worksheet_id')
+  ->insert($row);
 
 ```
 
@@ -58,9 +70,8 @@ $user = [
   'password' => 'password',
 ];
 
-Spreadsheets::login($user)
-  ->getWriter()
-  -to('sheet_key', 'worksheet_id')
+Spreadsheets::login($user)->getWriter()
+  ->to('sheet_key', 'worksheet_id')
   ->update(['name' => 'mojibakeo'], ['id' => 100]);
 
 ```
