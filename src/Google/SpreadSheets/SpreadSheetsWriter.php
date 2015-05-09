@@ -10,7 +10,6 @@ namespace Google\SpreadSheets;
 
 use Google\SpreadSheets;
 use ZendGData\SpreadSheets\ListEntry;
-use ZendGData\Spreadsheets\ListQuery;
 
 /**
  * Class SpreadSheetsWriter
@@ -84,39 +83,13 @@ class SpreadSheetsWriter
     }
 
     /**
-     * @param array $identify
+     * @param array $identifier
      * @return array|\ZendGData\App\Entry
      */
-    public function search(array $identify)
+    public function search(array $identifier)
     {
-        return $this->client->getReader()->search($identify);
+        return $this->client->getReader()->search($identifier);
     }
 
-    /**
-     * @param array $identify
-     * @return string
-     */
-    protected function convertToCriteria(array $identify)
-    {
-        $queries = [];
-        foreach ($identify as $k => $v) {
-            $queries[] = sprintf('%s=%s', $k, strtolower($v));
-        }
-        return implode(' and ', $queries);
-    }
-
-    /**
-     * @param array $identify
-     * @return \ZendGData\SpreadSheets\ListFeed
-     */
-    protected function searchListFeed(array $identify)
-    {
-        $criteria = $this->convertToCriteria($identify);
-        $listQuery = new ListQuery();
-        $listQuery->setSpreadsheetKey($this->client->getSheetKey())
-            ->setWorksheetId($this->client->getWorksheetId());
-        $listQuery->setSpreadsheetQuery($criteria);
-        return $this->client->getService()->getListFeed($listQuery);
-    }
 
 }

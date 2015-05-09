@@ -95,12 +95,28 @@ class SpreadSheetsReader
     }
 
     /**
-     * @param array $identify
+     * @param array $identifier
      * @return array|Entry
      */
-    public function search(array $identify)
+    public function search(array $identifier)
     {
-        return $this->searchListFeed($identify)->getEntry();
+        return $this->getListFeed($identifier)->getEntry();
+    }
+
+    /**
+     * @param array $identifier
+     * @return ListFeed
+     */
+    public function getListFeed($identifier = [])
+    {
+        $listQuery = new ListQuery();
+        $listQuery->setSpreadsheetKey($this->client->getSheetKey())
+              ->setWorksheetId($this->client->getWorksheetId());
+        if (!empty($identifier)) {
+            $criteria = $this->convertToCriteria($identifier);
+            $listQuery->setSpreadsheetQuery($criteria);
+        }
+        return $this->client->getService()->getListFeed($listQuery);
     }
 
     /**
@@ -115,21 +131,6 @@ class SpreadSheetsReader
         }
         return implode(' and ', $queries);
     }
-
-    /**
-     * @param array $identify
-     * @return ListFeed
-     */
-    protected function searchListFeed($identify = [])
-    {
-        $criteria = $this->convertToCriteria($identify);
-        $listQuery = new ListQuery();
-        $listQuery->setSpreadsheetKey($this->client->getSheetKey())
-                  ->setWorksheetId($this->client->getWorksheetId());
-        $listQuery->setSpreadsheetQuery($criteria);
-        return $this->client->getService()->getListFeed($listQuery);
-    }
-
 
     /**
      * @return array
@@ -187,7 +188,7 @@ class SpreadSheetsReader
     public function fetch()
     {
         $items = [];
-        $feeds = $this->client->getListFeed();
+        $feeds = $this->getListFeed();
         foreach ($feeds as $feed) {
             $item = [];
             $this->eachRows($feed, function(Custom $row) use (&$item) {

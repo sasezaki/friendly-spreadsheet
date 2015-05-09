@@ -144,18 +144,6 @@ class SpreadSheets
         return $this;
     }
 
-    /**
-     * @return \ZendGData\SpreadSheets\ListFeed
-     */
-    public function getListFeed()
-    {
-        $service = $this->getService();
-        $query = new ZendSpreadSheets\ListQuery();
-        $query->setSpreadsheetKey($this->getSheetKey())
-              ->setWorksheetId($this->getWorksheetId());
-        return $service->getListFeed($query);
-    }
-
 
     /**
      * @throws \ZendGData\App\AuthException
@@ -187,6 +175,7 @@ class SpreadSheets
     {
         $adapter = new Curl();
         $adapter->setCurlOption(CURLOPT_SSL_VERIFYHOST, false)
+                ->setCurlOption(CURLOPT_RETURNTRANSFER, false)
                 ->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
         $httpClient = new HttpClient();
         $httpClient->setAdapter($adapter);
