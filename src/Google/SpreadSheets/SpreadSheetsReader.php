@@ -35,7 +35,6 @@ class SpreadSheetsReader
     public function __construct(SpreadSheets $client)
     {
         $this->client = $client;
-        $this->items = $this->fetch();
         return $this;
     }
 
@@ -90,14 +89,8 @@ class SpreadSheetsReader
      */
     public function select(array $select)
     {
-        if (in_array('all', $select) or in_array('*', $select)) {
-            $this->select = [];
-            return $this;
-        }
+        $this->select = $select;
 
-        foreach ($this->items as $item) {
-            $this->select[] = $this->filter($item, $select);
-        }
         return $this;
     }
 
@@ -143,7 +136,23 @@ class SpreadSheetsReader
      */
     protected function getItems()
     {
-        return empty($this->select) ? $this->items : $this->select;
+        if (!$this->needsFilter()) {
+            return $this->items;
+        }
+        $items = [];
+        foreach ($this->items as $item) {
+            $items[] = $this->filter($item, $this->select);
+        }
+        return $items;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function needsFilter()
+    {
+        $select = $this->select;
+        return !in_array('all', $select) && !in_array('*', $select);
     }
 
     /**
@@ -154,7 +163,7 @@ class SpreadSheetsReader
     protected function filter(array $item, array $keys)
     {
         foreach($item as $k => $value) {
-            if (!array_key_exists($k, $keys)) {
+            if (!in_array($k, $keys)) {
                 unset($item[$k]);
             }
         }
@@ -173,9 +182,9 @@ class SpreadSheetsReader
     }
 
     /**
-     * @return array
+     * @return $this
      */
-    protected function fetch()
+    public function fetch()
     {
         $items = [];
         $feeds = $this->client->getListFeed();
@@ -184,9 +193,10 @@ class SpreadSheetsReader
             $this->eachRows($feed, function(Custom $row) use (&$item) {
                 $item[$row->getColumnName()] = $row->getText();
             });
-            $result[] = $item;
+            $items[] = $item;
         }
-        return $items;
+        $this->items = $items;
+        return $this;
     }
 
 }
