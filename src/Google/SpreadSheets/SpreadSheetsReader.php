@@ -99,7 +99,7 @@ class SpreadSheetsReader
      */
     public function nth($nth)
     {
-        return array_slice($this->items, $nth -1, 1)['0'];
+        return array_slice($this->getItems(), $nth -1, 1)['0'];
     }
 
     /**
