@@ -6,9 +6,14 @@ use Google\SpreadSheets;
 
 $user = require __DIR__ .'/user.php';
 
-$sheetKey = '';
-$worksheetId = '';
+$sheetKey = '1baBa_WjZHg1diTWB0oGWaCfGN_igt1rXGKElYKrzi8Q';
+$worksheetId = 'od6';
 
-$cli = SpreadSheets::login($user)->getReader();
-$monsters = $cli->select(['id', 'name'])->from($sheetKey, $worksheetId)->all();
+$monsters = SpreadSheets::login($user)->getReader()
+    ->select(['id'])
+    ->from($sheetKey, $worksheetId)
+    ->fetch()
+    ->all();
+
+var_dump($monsters);
 
