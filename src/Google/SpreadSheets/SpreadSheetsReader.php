@@ -70,7 +70,7 @@ class SpreadSheetsReader
      */
     public function last()
     {
-        return array_slice($this->getItems(), 0, -1);
+        return array_slice($this->getItems(), -1, 1);
     }
 
 
@@ -80,7 +80,7 @@ class SpreadSheetsReader
      */
     public function nth($nth)
     {
-        return array_slice($this->items, 0, $nth);
+        return array_slice($this->items, $nth -1, 1);
     }
 
     /**
