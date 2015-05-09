@@ -9,6 +9,9 @@ $user = [
     'password' => '',
 ];
 
-$reader = SpreadSheets::login($user)->getReader();
-$monsters = $reader->select(['id', 'name'])->all();
+$sheetKey = '';
+$worksheetId = '';
+
+$cli = SpreadSheets::login($user)->getReader();
+$monsters = $cli->select(['id', 'name'])->from($sheetKey, $worksheetId)->all();
 
