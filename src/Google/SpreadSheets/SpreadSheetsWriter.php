@@ -68,7 +68,7 @@ class SpreadSheetsWriter
      */
     public function update(array $row, array $identify)
     {
-        $entries = $this->search($identify);
+        $entries = $this->searchEntry($identify);
         $count = count($entries);
         if ($count > 1) {
             throw new SpreadSheetsException(sprintf(
@@ -86,10 +86,9 @@ class SpreadSheetsWriter
      * @param array $identifier
      * @return array|\ZendGData\App\Entry
      */
-    public function search(array $identifier)
+    public function searchEntry(array $identifier)
     {
-        return $this->client->getReader()->search($identifier);
+        return $this->client->getReader()->getListFeed($identifier)->getEntry();
     }
-
 
 }

@@ -28,6 +28,7 @@ class SpreadSheetsReader
 
     protected $items  = [];
     protected $select = [];
+    protected $where = [];
 
     /**
      * @param SpreadSheets $client
@@ -46,6 +47,16 @@ class SpreadSheetsReader
     public function from($sheetKey, $worksheetId)
     {
         $this->client->setTarget($sheetKey, $worksheetId);
+        return $this;
+    }
+
+    /**
+     * @param array $identifier
+     * @return $this
+     */
+    public function where(array $identifier)
+    {
+        $this->where = $identifier;
         return $this;
     }
 
@@ -102,14 +113,6 @@ class SpreadSheetsReader
         return $this;
     }
 
-    /**
-     * @param array $identifier
-     * @return array|Entry
-     */
-    public function search(array $identifier)
-    {
-        return $this->getListFeed($identifier)->getEntry();
-    }
 
     /**
      * @param array $identifier
@@ -196,7 +199,7 @@ class SpreadSheetsReader
     public function exec()
     {
         $items = [];
-        $feeds = $this->getListFeed();
+        $feeds = empty($this->where) ? $this->getListFeed() : $this->getListFeed($this->where);
         foreach ($feeds as $feed) {
             $item = [];
             $this->eachRows($feed, function(Custom $row) use (&$item) {

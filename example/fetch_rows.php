@@ -10,8 +10,9 @@ $sheetKey = '1baBa_WjZHg1diTWB0oGWaCfGN_igt1rXGKElYKrzi8Q';
 $worksheetId = 'od6';
 
 $monsters = SpreadSheets::login($user)->getReader()
-    ->select(['id'])
+    ->select(['*'])
     ->from($sheetKey, $worksheetId)
+    ->where(['id' => 3])
     ->exec()
     ->fetchAll();
 
