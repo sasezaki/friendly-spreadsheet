@@ -1,0 +1,15 @@
+{
+    "name": "mojibakeo/google-spreadsheets",
+    "description": "wrapper class of ZendGData\\SpreadSheets",
+    "require": {
+        "zendframework/zendgdata": "~2.0@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mojibakeo",
+            "email": "mojibakeo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
