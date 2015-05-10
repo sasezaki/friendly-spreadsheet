@@ -9,7 +9,6 @@
 namespace Google\SpreadSheets;
 
 use Google\SpreadSheets;
-use ZendGData\App\Entry;
 use ZendGdata\SpreadSheets\Extension\Custom;
 use ZendGData\SpreadSheets\ListEntry;
 use ZendGData\Spreadsheets\ListFeed;
