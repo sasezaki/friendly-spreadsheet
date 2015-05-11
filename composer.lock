@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "01522e5f9ec5eb5200e1f3a5edeb8a00",
+    "hash": "c30899d18b7baaba4690e93d697f3260",
     "packages": [
         {
             "name": "google/apiclient",
@@ -50,7 +50,7 @@
         },
         {
             "name": "mojibakeo/php-google-spreadsheet-client",
-            "version": "dev-master",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mojibakeo/php-google-spreadsheet-client.git",
