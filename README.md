@@ -1,8 +1,7 @@
-# Google\SpreadSheets
+# FriendlySpreadSheet
 
-- 参照と挿入と更新(ただし1行ずつ)できるよ
-- 削除はできない
-- Google 中の皆様とかアプリケーション名が Google な場合とか困るかもしれないけど思いつかないのでこんな名前空間にしてしまった
+- とりあえず読み出しだけできるようにした
+
 
 ## develop env
  - mac os x yosemite
@@ -12,66 +11,26 @@
 
 [exaples](https://github.com/mojibakeo/spreadsheets/tree/master/example)
 
-- get rows
-```php
-<?php
-
-use Google\Spreadsheets;
-
-$user = [
-  'user' => 'mojibakeo@gmail.com',
-  'password' => 'password',
-];
-
-$all = Spreadsheets::login($user)->getReader()
-  ->select(['*'])
-  ->from('sheet_key', 'worksheet_id')
-  ->exec()
-  ->fetchAll();
-
-$specific = Spreadsheets::login($user)->getReader()
-  ->select(['*'])
-  ->from('sheet_key', 'worksheet_id')
-  ->where(['id' => 1])
-  ->exec()
-  ->fetch();
-
-```
-
-- insert row
+- fetch rows
 
 ```php
 <?php
 
-use Google\Spreadsheets;
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$user = [
-  'user' => 'mojibakeo@gmail.com',
-  'password' => 'password',
-];
-$row = [
-  'id' => 100,
-  'name' => 'bko',
-]
-Spreadsheets::login($user)->getWriter()
-  ->to('sheet_key', 'worksheet_id')
-  ->insert($row);
+use FriendlySpreadSheet\FriendlySpreadSheet;
 
-```
+$config = require __DIR__ . '/config.php';
 
-- update row
-```php
-<?php
+$monsters = FriendlySpreadSheet::auth($config)->createReaderClient()
+    ->select(['*'])
+    ->from('test', 'モンスター一覧')
+    ->where('cost > 20')
+    ->orderBy('rare', 'ASC')
+    ->setMaxResults(2)
+    ->exec()
+    ->fetchAll();
 
-use Google\Spreadsheets;
-
-$user = [
-  'user' => 'mojibakeo@gmail.com',
-  'password' => 'password',
-];
-
-Spreadsheets::login($user)->getWriter()
-  ->to('sheet_key', 'worksheet_id')
-  ->update(['name' => 'mojibakeo'], ['id' => 100]);
+var_dump($monsters);
 
 ```
