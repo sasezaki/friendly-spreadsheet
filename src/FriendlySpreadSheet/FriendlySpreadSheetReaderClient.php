@@ -77,7 +77,11 @@ class FriendlySpreadSheetReaderClient
     {
         // fetch
         $worksheet = $this->getWorksheet();
-        $listFeed = $worksheet->getListFeed(["sq" => $this->where]);
+        $query = [];
+        if (strlen($this->where) > 0) {
+            $query = ['sq' => $this->where];
+        }
+        $listFeed = $worksheet->getListFeed($query);
         $entries = $listFeed->getEntries();
         $rows = [];
         foreach ($entries as $entry) {
