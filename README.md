@@ -1,7 +1,5 @@
 # FriendlySpreadSheet
-
-- とりあえず読み出しだけできるようにした
-
+simple google spreadsheet client
 
 ## develop env
  - mac os x yosemite
@@ -10,6 +8,11 @@
 ## usage
 
 [exaples](https://github.com/mojibakeo/spreadsheets/tree/master/example)
+
+- install
+```
+composer require mojibakeo/friendly-spreadsheet dev-master
+```
 
 - fetch rows
 
