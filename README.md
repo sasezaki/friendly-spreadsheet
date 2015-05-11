@@ -7,7 +7,7 @@ simple google spreadsheet client
 
 ## usage
 
-[exaples](https://github.com/mojibakeo/spreadsheets/tree/master/example)
+[examples](https://github.com/mojibakeo/spreadsheets/tree/master/example)
 
 - install
 ```
