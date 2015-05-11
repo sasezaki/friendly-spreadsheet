@@ -36,6 +36,11 @@ class FriendlySpreadSheet
         return new FriendlySpreadSheetReaderClient($this->getSpreadsheetFeed());
     }
 
+    public function createWriterClient()
+    {
+        return new FriendlySpreadSheetWriterClient($this->getSpreadsheetFeed());
+    }
+
     public function listWorksheet($spreadsheet)
     {
         $worksheets = [];

@@ -8,32 +8,14 @@
 
 namespace FriendlySpreadSheet;
 
-use Google\Spreadsheet\SpreadsheetFeed;
-
-class FriendlySpreadSheetReaderClient
+class FriendlySpreadSheetReaderClient extends FriendlySpreadSheetAbstractClient
 {
-    /**
-     * @var SpreadsheetFeed
-     */
-    protected $spreadsheetFeed;
-
-    protected $spreadsheet = '';
-    protected $worksheet   = '';
     protected $select      = ['*'];
     protected $where       = '';
     protected $maxResults  = null;
     protected $rows        = [];
     protected $sort        = '';
     protected $order       = '';
-
-    /**
-     * @param SpreadsheetFeed $spreadsheetFeed
-     */
-    public function __construct(SpreadsheetFeed $spreadsheetFeed)
-    {
-        $this->spreadsheetFeed = $spreadsheetFeed;
-        return $this;
-    }
 
     public function select($select = [])
     {
@@ -146,33 +128,6 @@ class FriendlySpreadSheetReaderClient
         return $rows;
     }
 
-    /**
-     * @return \Google\Spreadsheet\Spreadsheet
-     * @throws FriendlySpreadSheetException
-     */
-    protected function getSpreadsheet()
-    {
-        $spreadsheet = $this->spreadsheetFeed->getByTitle($this->spreadsheet);
-        if (is_null($spreadsheet)) {
-            throw new FriendlySpreadSheetException(sprintf('Spreadsheet %s is not found', $this->spreadsheet));
-        }
-        return $spreadsheet;
-    }
-
-    /**
-     * @return \Google\Spreadsheet\Worksheet
-     * @throws FriendlySpreadSheetException
-     */
-    protected function getWorksheet()
-    {
-        $spreadsheet = $this->getSpreadsheet();
-        $worksheetFeed = $spreadsheet->getWorksheets();
-        $worksheet = $worksheetFeed->getByTitle($this->worksheet);
-        if (is_null($worksheet)) {
-            throw new FriendlySpreadSheetException(sprintf('Worksheet %s is not found', $this->worksheet));
-        }
-        return $worksheet;
-    }
 
     /**
      * @param $a
