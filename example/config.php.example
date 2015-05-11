@@ -1,0 +1,10 @@
+<?php 
+
+return [
+    'application_name' => '',
+    'client_id' => '',
+    'email' => '',
+    'p12_key_file' => '',
+    'secret' => 'notasecret',
+];
+

@@ -14,10 +14,6 @@ use ZendGData\SpreadSheets\ListEntry;
 use ZendGData\Spreadsheets\ListFeed;
 use ZendGData\Spreadsheets\ListQuery;
 
-/**
- * Class SpreadSheetsReader
- * @package Google\SpreadSheets
- */
 class SpreadSheetsReader
 {
     /**

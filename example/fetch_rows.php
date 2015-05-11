@@ -2,19 +2,16 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Google\SpreadSheets;
+use FriendlySpreadSheet\FriendlySpreadSheet;
 
-$user = require __DIR__ .'/user.php';
+$config = require __DIR__ . '/config.php';
 
-$sheetKey = '1baBa_WjZHg1diTWB0oGWaCfGN_igt1rXGKElYKrzi8Q';
-$worksheetId = 'od6';
-
-$monsters = SpreadSheets::login($user)->getReader()
+$monsters = FriendlySpreadSheet::auth($config)->createReaderClient()
     ->select(['*'])
-    ->from($sheetKey, $worksheetId)
-    ->where(['id' => 3])
+    ->from('test', 'モンスター一覧')
+    ->orderBy('cost', 'DESC')
     ->exec()
     ->fetchAll();
 
 var_dump($monsters);
-
+exit;

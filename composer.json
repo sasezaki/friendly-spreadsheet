@@ -1,8 +1,9 @@
 {
     "name": "mojibakeo/google-spreadsheets",
-    "description": "wrapper class of ZendGData\\SpreadSheets",
+    "description": "friendly spreadsheets",
     "require": {
-        "zendframework/zendgdata": "~2.0@dev"
+        "mojibakeo/php-google-spreadsheet-client": "dev-master",
+        "google/apiclient": "~1.1@dev"
     },
     "license": "MIT",
     "authors": [
@@ -14,7 +15,13 @@
     "minimum-stability": "dev",
     "autoload": {
       "psr-0": {
-        "Google": "src/"
+        "FriendlySpreadSheet": "src/"
       }
-    }
+    },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@github.com:mojibakeo/php-google-spreadsheet-client.git"
+      }
+    ]
 }
