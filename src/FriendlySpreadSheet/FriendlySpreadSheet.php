@@ -33,7 +33,27 @@ class FriendlySpreadSheet
 
     public function createReaderClient()
     {
-        return new FriendlySpreadSheetReaderClient($this->client->getSpreadsheets());
+        return new FriendlySpreadSheetReaderClient($this->getSpreadsheetFeed());
+    }
+
+    public function listWorksheet($spreadsheet)
+    {
+        $worksheets = [];
+        foreach ($this->getWorksheets($spreadsheet) as $worksheet) {
+            $worksheets[] = $worksheet->getTitle();
+        }
+        return $worksheets;
+    }
+
+    protected function getWorksheets($spreadsheet)
+    {
+        $spreadsheetFeed = $this->getSpreadsheetFeed();
+        return $spreadsheetFeed->getByTitle($spreadsheet)->getWorksheets();
+    }
+
+    protected function getSpreadsheetFeed()
+    {
+        return $this->client->getSpreadsheets();
     }
 
     protected static function getAccessToken(array $config)

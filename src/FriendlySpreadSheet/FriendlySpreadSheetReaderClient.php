@@ -146,7 +146,7 @@ class FriendlySpreadSheetReaderClient
      * @return \Google\Spreadsheet\Spreadsheet
      * @throws FriendlySpreadSheetException
      */
-    public function getSpreadsheet()
+    protected function getSpreadsheet()
     {
         $spreadsheet = $this->spreadsheetFeed->getByTitle($this->spreadsheet);
         if (is_null($spreadsheet)) {
@@ -159,7 +159,7 @@ class FriendlySpreadSheetReaderClient
      * @return \Google\Spreadsheet\Worksheet
      * @throws FriendlySpreadSheetException
      */
-    public function getWorksheet()
+    protected function getWorksheet()
     {
         $spreadsheet = $this->getSpreadsheet();
         $worksheetFeed = $spreadsheet->getWorksheets();
