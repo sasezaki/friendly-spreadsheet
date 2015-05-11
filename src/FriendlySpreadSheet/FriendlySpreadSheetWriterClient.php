@@ -34,6 +34,12 @@ class FriendlySpreadSheetWriterClient extends FriendlySpreadSheetAbstractClient
         return $this;
     }
 
+    /**
+     * @param array $row
+     * @param array $identifier
+     * @return $this
+     * @throws FriendlySpreadSheetException
+     */
     public function update(array $row, array $identifier)
     {
         $worksheet = $this->getWorksheet();
