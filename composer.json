@@ -2,7 +2,7 @@
     "name": "mojibakeo/friendly-spreadsheet",
     "description": "friendly spreadsheets",
     "require": {
-        "mojibakeo/php-google-spreadsheet-client": "dev-master",
+        "mojibakeo/php-google-spreadsheet-client": "@dev",
         "google/apiclient": "~1.1@dev"
     },
     "license": "MIT",
