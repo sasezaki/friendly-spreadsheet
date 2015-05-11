@@ -19,12 +19,6 @@
         "FriendlySpreadSheet": "src/"
       }
     },
-    "repositories": [
-      {
-        "type": "vcs",
-        "url": "git@github.com:mojibakeo/php-google-spreadsheet-client.git"
-      }
-    ],
     "extra": {
       "branch-alias": {
         "dev-master": "1.0.x-dev"
