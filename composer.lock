@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72a730050c6c3cfdec1357d2aa02044a",
+    "hash": "b5d375ebb2fdd6e1ad056e90e06c7fda",
     "packages": [
         {
             "name": "google/apiclient",
-            "version": "dev-master",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/google-api-php-client.git",
-                "reference": "ef2b8f69b6f7879bc8d47514875d624eb8098076"
+                "reference": "9c35bbbbaf04a5236d763560dab1e2f6e672a724"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/ef2b8f69b6f7879bc8d47514875d624eb8098076",
-                "reference": "ef2b8f69b6f7879bc8d47514875d624eb8098076",
+                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/9c35bbbbaf04a5236d763560dab1e2f6e672a724",
+                "reference": "9c35bbbbaf04a5236d763560dab1e2f6e672a724",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2015-05-01 16:50:06"
+            "time": "2014-11-25 14:35:03"
         },
         {
             "name": "mojibakeo/php-google-spreadsheet-client",
@@ -109,7 +109,7 @@
         "mojibakeo/php-google-spreadsheet-client": 20,
         "google/apiclient": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
