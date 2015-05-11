@@ -1,5 +1,5 @@
 {
-    "name": "mojibakeo/google-spreadsheets",
+    "name": "mojibakeo/friendly-spreadsheet",
     "description": "friendly spreadsheets",
     "require": {
         "mojibakeo/php-google-spreadsheet-client": "dev-master",
