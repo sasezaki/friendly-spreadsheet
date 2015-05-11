@@ -20,7 +20,7 @@ class FriendlySpreadSheetReaderClient
     protected $spreadsheet = '';
     protected $worksheet   = '';
     protected $select      = ['*'];
-    protected $where       = [];
+    protected $where       = '';
     protected $maxResults  = null;
     protected $rows        = [];
     protected $sort        = '';
@@ -48,7 +48,7 @@ class FriendlySpreadSheetReaderClient
         return $this;
     }
 
-    public function where(array $identifier)
+    public function where($identifier = '')
     {
         $this->where = $identifier;
         return $this;
@@ -77,7 +77,7 @@ class FriendlySpreadSheetReaderClient
     {
         // fetch
         $worksheet = $this->getWorksheet();
-        $listFeed = $worksheet->getListFeed();
+        $listFeed = $worksheet->getListFeed(["sq" => $this->where]);
         $entries = $listFeed->getEntries();
         $rows = [];
         foreach ($entries as $entry) {

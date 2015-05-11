@@ -9,7 +9,9 @@ $config = require __DIR__ . '/config.php';
 $monsters = FriendlySpreadSheet::auth($config)->createReaderClient()
     ->select(['*'])
     ->from('test', 'モンスター一覧')
-    ->orderBy('cost', 'DESC')
+    ->where('cost > 200')
+    ->orderBy('cost', 'ASC')
+    ->setMaxResults(2)
     ->exec()
     ->fetchAll();
 
